@@ -71,3 +71,13 @@ Feeling uninspired by the portfolio? Here's a list of cool portfolios I found af
 * <a href="http://nicoledominguez.com/portfolio/">http://nicoledominguez.com/portfolio/</a>
 * <a href="http://www.roxannecook.com/">http://www.roxannecook.com/</a>
 * <a href="http://www.84colors.com/portfolio.html">http://www.84colors.com/portfolio.html</a>
+
+### Task 1: PageSpeed Insight for index.html file
+
+1. I have moved the perfmatters.js into the index.html file as inline css.
+2. Added asyn attribute to the analystics.js file
+3. Move the inline js script to the bottom of the body tag.
+4. Downloaded the images and put them in a local folder and optimized the images with grunt imagemin.
+5. Added media="print" to the print.css file
+6. Move the fonts link from the head to the css file with import.
+7. Minified the js and css files with grunt.
