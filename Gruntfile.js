@@ -32,7 +32,7 @@ module.exports = function(grunt) {
             cwd: 'views/images/',
             src: ['**/*.png'],
             // Could also match cwd line above. i.e. project-directory/img/
-            dest: 'views/compressed/',
+            dest: 'compressed/',
             ext: '.png'
           }
         ]
@@ -53,12 +53,13 @@ module.exports = function(grunt) {
             cwd: 'views/images/',
             src: ['**/*.jpg'],
             // Could also match cwd line above. i.e. project-directory/img/
-            dest: 'views/compressed/',
+            dest: 'compressed/',
             ext: '.jpg'
           }
         ]
       }
     },
+
     cssmin: {
       target: {
         files: [{
@@ -69,7 +70,41 @@ module.exports = function(grunt) {
           ext: '.min.css'
         }]
       }
+    },
+    availabletasks: {
+      tasks: {
+        options: {
+          filter: 'exclude',
+          tasks: ['availabletasks', 'tasks']
+        }
+      }              
+    },
+    responsive_images: {
+      dev: {
+        options: {
+          sizes: [{
+            width: 320,
+            height: 240,
+            upscale: true
+          },{
+            name: 'large',
+            width: 640
+          },{
+            name: "large",
+            width: 1024,
+            suffix: "_x2",
+            quality: 60
+          }]
+        },
+        files: [{
+          expand: true,
+          src: ['compressed/*.{jpg,gif,png}'],
+          cwd: '/Users/bernadettepluempe/Documents/dev/work/nanodegree/frontend-nanodegree-mobile-portfolio/',
+          dest: 'resizedPics/'
+        }]
+      }
     }
+
   });
   // Load the plugin that provides the "uglify" task.
   grunt.loadNpmTasks('grunt-contrib-uglify');
@@ -84,4 +119,11 @@ module.exports = function(grunt) {
   //css file minify
   grunt.loadNpmTasks('grunt-contrib-cssmin');
 
+  //resizing images
+  grunt.loadNpmTasks('grunt-responsive-images');
+  grunt.registerTask('default', ['responsive_images']);
+
+  //Grunt: How to list available tasks
+  grunt.loadNpmTasks('grunt-available-tasks');
+  grunt.registerTask('tasks', ['availabletasks']);
 };

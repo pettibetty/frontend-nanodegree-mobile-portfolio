@@ -81,3 +81,4 @@ Feeling uninspired by the portfolio? Here's a list of cool portfolios I found af
 5. Added media="print" to the print.css file
 6. Move the fonts link from the head to the css file with import.
 7. Minified the js and css files with grunt.
+8. Used grunt responsive-image to resize the images.
