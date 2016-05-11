@@ -71,6 +71,7 @@ module.exports = function(grunt) {
         }]
       }
     },
+
     availabletasks: {
       tasks: {
         options: {
@@ -79,33 +80,54 @@ module.exports = function(grunt) {
         }
       }              
     },
+
     responsive_images: {
       dev: {
         options: {
           sizes: [{
-            width: 320,
-            height: 240,
-            upscale: true
+            name: 'small', width: 320
+          }, {
+            name: 'medium', width: 640
           },{
-            name: 'large',
-            width: 640
-          },{
-            name: "large",
-            width: 1024,
-            suffix: "_x2",
-            quality: 60
+            name: 'large', width: 1024
           }]
         },
         files: [{
           expand: true,
           src: ['compressed/*.{jpg,gif,png}'],
           cwd: '/Users/bernadettepluempe/Documents/dev/work/nanodegree/frontend-nanodegree-mobile-portfolio/',
-          dest: 'resizedPics/'
+          dest: 'dist/'
+        }]
+      }
+    },
+    
+    responsive_images_extender: {
+      main: {
+        options: {
+          sizes: [{
+            selector: 'img',
+            sizeList: [{
+              cond: 'min-width: 300px',
+                size: '50vw'
+              }, {
+                cond: 'min-width: 700px',
+                size: '70vw'
+              }, {
+                cond: 'default',
+                size: '100vw'
+            }]
+          }]
+        },
+        files: [{
+          expand: true,
+          src: ['**/*.{html,htm,php}'],
+          cwd: '/Users/bernadettepluempe/Documents/dev/work/nanodegree/frontend-nanodegree-mobile-portfolio/',
+          dest: 'dist/'
         }]
       }
     }
-
   });
+
   // Load the plugin that provides the "uglify" task.
   grunt.loadNpmTasks('grunt-contrib-uglify');
 
@@ -122,6 +144,8 @@ module.exports = function(grunt) {
   //resizing images
   grunt.loadNpmTasks('grunt-responsive-images');
   grunt.registerTask('default', ['responsive_images']);
+
+  grunt.loadNpmTasks('grunt-responsive-images-extender');
 
   //Grunt: How to list available tasks
   grunt.loadNpmTasks('grunt-available-tasks');
