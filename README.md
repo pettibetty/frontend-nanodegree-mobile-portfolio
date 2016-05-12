@@ -82,3 +82,14 @@ Feeling uninspired by the portfolio? Here's a list of cool portfolios I found af
 6. Move the fonts link from the head to the css file with import.
 7. Minified the js and css files with grunt.
 8. Used grunt responsive-image to resize the images.
+9. included srcset in the html file inside the img tag for the images to change according to screen size.
+
+### Task 1: PageSpeed Insight for index.html file
+
+1. create random pizza array outside the for loop. (line 454)
+2. Creating the array outside the for loop.(line 474)
+3. Moving the declaration and assignment of the variable phase outside the for loop.
+4. Move document.querySelector("#movingPizzas1") outside the for loop (line 535)
+5. Change querySelectorAll() to getElementsByClassName and moving var items = document.getElementsByClassName('mover') outside the function;(line 506)
+6. Traversing the phase array with a for loop (line 515)
+7. Setting animation to false (line 511)
