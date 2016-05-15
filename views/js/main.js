@@ -398,6 +398,9 @@ var pizzaElementGenerator = function(i) {
   return pizzaContainer;
 };
 
+
+var dx_array = [];
+
 // resizePizzas(size) is called when the slider in the "Our Pizzas" section of the website moves.
 var resizePizzas = function(size) {
   window.performance.mark("mark_start_resize");   // User Timing API function
@@ -452,9 +455,10 @@ var resizePizzas = function(size) {
   function changePizzaSizes(size) {
     //create random pizza array outside the for loop
     var randomPizzaArray = document.querySelectorAll(".randomPizzaContainer");
-    for (var i = 0; i < document.querySelectorAll(".randomPizzaContainer").length; i++) {
-      var dx = determineDx(randomPizzaArray[i], size);
-      var newwidth = randomPizzaArray[i].offsetWidth + dx + 'px';
+    var dx = determineDx(randomPizzaArray[0], size);
+    var newwidth = randomPizzaArray[0].offsetWidth + dx + 'px';
+      
+   for (var i = 0; i < randomPizzaArray.length; i++) {
       randomPizzaArray[i].style.width = newwidth;
     }
   }
@@ -507,17 +511,15 @@ var items = document.getElementsByClassName('mover');
 //Declare the phase array outside the updatePositions() fonction.
 var phase = [];
 var theScroll;
-var pixel;
+
 function updatePositions() {
-  //Setting animation to false
-  animating = false;
   frame++;
   theScroll = (document.body.scrollTop / 1250) ;
   window.performance.mark("mark_start_frame");
   
 
   for (var i = 0; i < items.length; i++) {
-    phase  = Math.sin(phase + (i % 5));
+    phase  = Math.sin(theScroll + (i % 5));
     items[i].style.left = items[i].basicLeft + 100 * phase + 'px';
   }
 
@@ -540,10 +542,15 @@ var movingPizzas1 = document.querySelector("#movingPizzas1");
 //Declare outside the function
 var elem;
 document.addEventListener('DOMContentLoaded', function() {
-  var cols = 8;
+  //ssigning the screen width to the variable myCols
+  var myCols = window.innerWidth;
   var s = 256;
-
-  for (var i = 0; i < 25; i++) {
+  //Dividing the screen width by s and rounding up with Math.ceil() method.
+  var cols = Math.ceil(window.innerWidth / s)
+  //Dividing the screen height by s and rounding up with Math.ceil() method.
+  var rows = Math.ceil(window.innerHeight / s);
+  
+  for (var i = 0; i < cols* rows ; i++) {
     elem = document.createElement('img');
     elem.className = 'mover';
     elem.src = "images/pizza.png";
@@ -554,4 +561,5 @@ document.addEventListener('DOMContentLoaded', function() {
     movingPizzas1.appendChild(elem);
   }
   updatePositions();
+  animation = true;
 });
