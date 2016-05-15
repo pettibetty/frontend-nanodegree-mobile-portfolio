@@ -542,11 +542,9 @@ var movingPizzas1 = document.querySelector("#movingPizzas1");
 //Declare outside the function
 var elem;
 document.addEventListener('DOMContentLoaded', function() {
-  //ssigning the screen width to the variable myCols
-  var myCols = window.innerWidth;
   var s = 256;
   //Dividing the screen width by s and rounding up with Math.ceil() method.
-  var cols = Math.ceil(window.innerWidth / s)
+  var cols = 8;
   //Dividing the screen height by s and rounding up with Math.ceil() method.
   var rows = Math.ceil(window.innerHeight / s);
   
